@@ -37,6 +37,38 @@ void setup() {
   digitalWrite(GRN_LED, LOW);
   digitalWrite(RED_LED, LOW);
   digitalWrite(BLU_LED, LOW);
+   for (int m = 0; m <= 255; m++) {
+      analogWrite(WHT_LED, m);
+      delay(5);
+    }
+    for (int n = 255; n >= 0; n--) {
+      analogWrite(WHT_LED, n);
+      delay(5);
+    }
+     for (int m = 0; m <= 255; m++) {
+      analogWrite(GRN_LED, m);
+      delay(5);
+    }
+    for (int n = 255; n >= 0; n--) {
+      analogWrite(GRN_LED, n);
+      delay(5);
+    }
+     for (int m = 0; m <= 255; m++) {
+      analogWrite(RED_LED, m);
+      delay(5);
+    }
+    for (int n = 255; n >= 0; n--) {
+      analogWrite(RED_LED, n);
+      delay(5);
+    }
+     for (int m = 0; m <= 255; m++) {
+      analogWrite(BLU_LED, m);
+      delay(5);
+    }
+    for (int n = 255; n >= 0; n--) {
+      analogWrite(BLU_LED, n);
+      delay(5);
+    }
 
 }
 
@@ -104,7 +136,7 @@ void loop() {
     digitalWrite(RED_LED, LOW);
 
   }
-  buttonClick = digitalRead(Btn);// clear all LEDS By Long Press until the white led dim up 
+  buttonClick = digitalRead(Btn);// clear all LEDS
   if (buttonClick == LOW)
   {
     

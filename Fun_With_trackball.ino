@@ -104,7 +104,7 @@ void loop() {
     digitalWrite(RED_LED, LOW);
 
   }
-  buttonClick = digitalRead(Btn);// clear all LEDS
+  buttonClick = digitalRead(Btn);// clear all LEDS By Long Press until the white led dim up 
   if (buttonClick == LOW)
   {
     

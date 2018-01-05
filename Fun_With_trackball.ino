@@ -1,13 +1,13 @@
 //Define Trackballer Breakout pin connections to Arduino
-#define Btn 2
-#define Lft 3
-#define Rht 4
-#define Up 5
-#define Dwn 7
-#define WHT_LED 6  //PWM
-#define GRN_LED 10 //PWM
-#define RED_LED 9  //PWM
-#define BLU_LED 11 //PWM
+#define Btn 2//button
+#define Lft 3//left
+#define Rht 4//right
+#define Up 5//up
+#define Dwn 7//down
+#define WHT_LED 6  //PWM white
+#define GRN_LED 10 //PWM green
+#define RED_LED 9  //PWM red
+#define BLU_LED 11 //PWM blue
 
 //Define variables used in sketch
 int buttonClick;

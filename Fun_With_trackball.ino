@@ -3,11 +3,11 @@
 #define Lft 3
 #define Rht 4
 #define Up 5
-#define Dwn 6
-#define WHT_LED 7
-#define GRN_LED 8
-#define RED_LED 9
-#define BLU_LED 10
+#define Dwn 7
+#define WHT_LED 6  //PWM
+#define GRN_LED 10 //PWM
+#define RED_LED 9  //PWM
+#define BLU_LED 11 //PWM
 
 //Define variables used in sketch
 int buttonClick;
@@ -37,55 +37,88 @@ void setup() {
   digitalWrite(GRN_LED, LOW);
   digitalWrite(RED_LED, LOW);
   digitalWrite(BLU_LED, LOW);
-  Serial.begin(9600);
-  Serial.println("Begin Trackballer Demo");
+
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  mouse_Lft = pulseIn(Lft, HIGH, 2000);
-  mouse_Rht = pulseIn(Rht, HIGH, 2000);
-  mouse_Up = pulseIn(Up, HIGH, 2000);
-  mouse_Dwn = pulseIn(Dwn, HIGH, 2000);
-  if (mouse_Lft > 0)
+  mouse_Lft = pulseIn(Lft, HIGH);
+  mouse_Rht = pulseIn(Rht, HIGH);
+  mouse_Up = pulseIn(Up, HIGH);
+  mouse_Dwn = pulseIn(Dwn, HIGH);
+  if (mouse_Lft > 0)// statement 1 scroll to left White LED 
   {
     x_position = --x_position;
-    digitalWrite(WHT_LED, HIGH);
+
+    for (int l = 0; l <= 255; l++) {
+      analogWrite(WHT_LED, l);
+      delay(5);
+    }
+
+
+
     digitalWrite(GRN_LED, LOW);
     digitalWrite(RED_LED, LOW);
     digitalWrite(BLU_LED, LOW);
   }
-  if (mouse_Rht > 0)
+
+  if (mouse_Rht > 0)//statement 2 scroll to rigth Green Led
   {
     x_position = ++x_position;
-    digitalWrite(GRN_LED, HIGH);
+
+    for (int i = 0; i <= 255; i++) {
+      analogWrite(GRN_LED, i);
+      delay(5);
+    }
+
     digitalWrite(WHT_LED, LOW);
     digitalWrite(RED_LED, LOW);
     digitalWrite(BLU_LED, LOW);
+
   }
-  if (mouse_Up > 0)
+  if (mouse_Up > 0)//statement 3 scroll to up Red LED
   {
     y_position = ++y_position;
-    digitalWrite(RED_LED, HIGH);
+
+    for (int j = 0; j <= 255; j++) {
+      analogWrite(RED_LED, j);
+      delay(5);
+    }
+
+
     digitalWrite(WHT_LED, LOW);
-    digitalWrite(BLU_LED, LOW);
     digitalWrite(GRN_LED, LOW);
+    digitalWrite(BLU_LED, LOW);
   }
-  if (mouse_Dwn > 0)
+  if (mouse_Dwn > 0)//statement 4 scroll to down Blue LED 
   {
     y_position = --y_position;
-    digitalWrite(BLU_LED, HIGH);
-    digitalWrite(RED_LED, LOW);
+
+    for (int k = 0; k <= 255; k++) {
+      analogWrite(BLU_LED, k);
+      delay(5);
+    }
+
     digitalWrite(WHT_LED, LOW);
     digitalWrite(GRN_LED, LOW);
+    digitalWrite(RED_LED, LOW);
+
   }
-
-
-  buttonClick = digitalRead(Btn);
+  buttonClick = digitalRead(Btn);// clear all LEDS
   if (buttonClick == LOW)
   {
-    digitalWrite(WHT_LED, HIGH);
-    delay(1000);
-    digitalWrite(WHT_LED, LOW);
+    
+    digitalWrite(GRN_LED, LOW);
+    digitalWrite(RED_LED, LOW);
+    digitalWrite(BLU_LED, LOW);
+    delay(100);
+    for (int m = 0; m <= 255; m++) {
+      analogWrite(WHT_LED, m);
+      delay(5);
+    }
+    for (int n = 255; n >= 0; n--) {
+      analogWrite(WHT_LED, n);
+      delay(5);
+    }
   }
 }

@@ -1,4 +1,13 @@
 # FunWithTrackBall
 Fun With blackberry trackball breakout board 
-Schematic(Credit SparkFun for schematic):
-https://cdn.sparkfun.com/assets/learn_tutorials/2/4/6/Blackberry_Trackballer_Hoookup_bb.jpg
+Connection:
+BreakOut Board  to Arduino
+BTN                Pin2 
+RHT                Pin3
+LFT                Pin4
+UP                 Pin5
+WHT                Pin6 PWM
+DWN                Pin7 
+GRN                Pin9 PWM
+RED                Pin10PWM
+BLU                Pin11PWM

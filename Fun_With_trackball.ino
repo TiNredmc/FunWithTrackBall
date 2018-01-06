@@ -15,8 +15,12 @@ unsigned long mouse_Lft;
 unsigned long mouse_Rht;
 unsigned long mouse_Up;
 unsigned long mouse_Dwn;
-int x_position;
-int y_position;
+
+//define LED colour variables .I will use at dim off leds
+int W = 0;
+int G = 0;
+int R = 0;
+int B = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -37,38 +41,38 @@ void setup() {
   digitalWrite(GRN_LED, LOW);
   digitalWrite(RED_LED, LOW);
   digitalWrite(BLU_LED, LOW);
-   for (int m = 0; m <= 255; m++) {
-      analogWrite(WHT_LED, m);
-      delay(5);
-    }
-    for (int n = 255; n >= 0; n--) {
-      analogWrite(WHT_LED, n);
-      delay(5);
-    }
-     for (int m = 0; m <= 255; m++) {
-      analogWrite(GRN_LED, m);
-      delay(5);
-    }
-    for (int n = 255; n >= 0; n--) {
-      analogWrite(GRN_LED, n);
-      delay(5);
-    }
-     for (int m = 0; m <= 255; m++) {
-      analogWrite(RED_LED, m);
-      delay(5);
-    }
-    for (int n = 255; n >= 0; n--) {
-      analogWrite(RED_LED, n);
-      delay(5);
-    }
-     for (int m = 0; m <= 255; m++) {
-      analogWrite(BLU_LED, m);
-      delay(5);
-    }
-    for (int n = 255; n >= 0; n--) {
-      analogWrite(BLU_LED, n);
-      delay(5);
-    }
+  for (int m = 0; m <= 255; m++) {
+    analogWrite(WHT_LED, m);
+    delay(5);
+  }
+  for (int n = 255; n >= 0; n--) {
+    analogWrite(WHT_LED, n);
+    delay(5);
+  }
+  for (int m = 0; m <= 255; m++) {
+    analogWrite(GRN_LED, m);
+    delay(5);
+  }
+  for (int n = 255; n >= 0; n--) {
+    analogWrite(GRN_LED, n);
+    delay(5);
+  }
+  for (int m = 0; m <= 255; m++) {
+    analogWrite(RED_LED, m);
+    delay(5);
+  }
+  for (int n = 255; n >= 0; n--) {
+    analogWrite(RED_LED, n);
+    delay(5);
+  }
+  for (int m = 0; m <= 255; m++) {
+    analogWrite(BLU_LED, m);
+    delay(5);
+  }
+  for (int n = 255; n >= 0; n--) {
+    analogWrite(BLU_LED, n);
+    delay(5);
+  }
 
 }
 
@@ -78,79 +82,170 @@ void loop() {
   mouse_Rht = pulseIn(Rht, HIGH);
   mouse_Up = pulseIn(Up, HIGH);
   mouse_Dwn = pulseIn(Dwn, HIGH);
-  if (mouse_Lft > 0)// statement 1 scroll to left White LED 
+  if (mouse_Lft > 0)// statement 1 scroll to left White LED
   {
-    x_position = --x_position;
 
-    for (int l = 0; l <= 255; l++) {
-      analogWrite(WHT_LED, l);
-      delay(5);
+    if (G >= 1) // Dim Green off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(GRN_LED, n);
+        delay(2.5);
+      }
     }
 
+    if (R >= 1) // Dim Red off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(RED_LED, n);
+        delay(2.5);
+      }
 
+    }
 
-    digitalWrite(GRN_LED, LOW);
-    digitalWrite(RED_LED, LOW);
-    digitalWrite(BLU_LED, LOW);
+    if (B >= 1) // Dim Blue off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(BLU_LED, n);
+        delay(2.5);
+      }
+    }
+
+    W = W + 1;
+    for (int m = 0; m <= 255; m++) {
+      analogWrite(WHT_LED, m);
+      delay(2.5);
+    }
+    
+    R = 0;
+    G = 0;
+    B = 0;
+
   }
 
   if (mouse_Rht > 0)//statement 2 scroll to rigth Green Led
   {
-    x_position = ++x_position;
 
-    for (int i = 0; i <= 255; i++) {
-      analogWrite(GRN_LED, i);
-      delay(5);
+    if (R >= 1) // Dim Red off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(RED_LED, n);
+        delay(2.5);
+      }
+    }
+    if (B >= 1) // Dim Blue off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(BLU_LED, n);
+        delay(2.5);
+      }
+    }
+    if (W >= 1) // Dim White off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(WHT_LED, n);
+        delay(2.5);
+      }
     }
 
-    digitalWrite(WHT_LED, LOW);
-    digitalWrite(RED_LED, LOW);
-    digitalWrite(BLU_LED, LOW);
-
+    G = G + 1;
+    for (int m = 0; m <= 255; m++) {
+      analogWrite(GRN_LED, m);
+      delay(2.5);
+    }
+    W = 0;
+    R = 0;
+    
+    B = 0;
   }
+
   if (mouse_Up > 0)//statement 3 scroll to up Red LED
   {
-    y_position = ++y_position;
-
-    for (int j = 0; j <= 255; j++) {
-      analogWrite(RED_LED, j);
-      delay(5);
+    if (G >= 1) // Dim Green off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(GRN_LED, n);
+        delay(2.5);
+      }
     }
+    if (B >= 1) // Dim Blue off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(BLU_LED, n);
+        delay(2.5);
+      }
+    }
+    if (W >= 1) // Dim White off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(WHT_LED, n);
+        delay(2.5);
+      }
+    }
+    R = R + 1;
+    for (int m = 0; m <= 255; m++) {
+      analogWrite(RED_LED, m);
+      delay(2.5);
+    }
+    W = 0;
+    
+    G = 0;
+    B = 0;
 
-
-    digitalWrite(WHT_LED, LOW);
-    digitalWrite(GRN_LED, LOW);
-    digitalWrite(BLU_LED, LOW);
   }
-  if (mouse_Dwn > 0)//statement 4 scroll to down Blue LED 
+  if (mouse_Dwn > 0)//statement 4 scroll to down Blue LED
   {
-    y_position = --y_position;
-
-    for (int k = 0; k <= 255; k++) {
-      analogWrite(BLU_LED, k);
-      delay(5);
+    if (G >= 1) // Dim Green off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(GRN_LED, n);
+        delay(2.5);
+      }
     }
+    if (R >= 1) // Dim Red off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(RED_LED, n);
+        delay(2.5);
+      }
+    }
+    if (W >= 1) // Dim White off
+    {
+      for (int n = 255; n >= 0; n--) {
+        analogWrite(WHT_LED, n);
+        delay(2.5);
+      }
+    }
+    B = B + 1;
+    for (int m = 0; m <= 255; m++) {
+      analogWrite(BLU_LED, m);
+      delay(2.5);
+    }
+    W = 0;
+    R = 0;
+    G = 0;
+   
 
-    digitalWrite(WHT_LED, LOW);
-    digitalWrite(GRN_LED, LOW);
-    digitalWrite(RED_LED, LOW);
+
 
   }
   buttonClick = digitalRead(Btn);// clear all LEDS
   if (buttonClick == LOW)
   {
-    
+    W = 0;
+    R = 0;
+    G = 0;
+    B = 0;
     digitalWrite(GRN_LED, LOW);
     digitalWrite(RED_LED, LOW);
     digitalWrite(BLU_LED, LOW);
     delay(100);
     for (int m = 0; m <= 255; m++) {
       analogWrite(WHT_LED, m);
-      delay(5);
+      delay(2.5);
     }
     for (int n = 255; n >= 0; n--) {
       analogWrite(WHT_LED, n);
-      delay(5);
+      delay(2.5);
     }
   }
 }

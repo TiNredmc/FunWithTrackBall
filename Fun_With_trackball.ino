@@ -15,8 +15,7 @@ unsigned long mouse_Lft;
 unsigned long mouse_Rht;
 unsigned long mouse_Up;
 unsigned long mouse_Dwn;
-int x_position;
-int y_position;
+
 //define LED colour variables .I will use at dim off leds
 int W = 0;
 int G = 0;
@@ -26,7 +25,7 @@ int B = 0;
 void setup() {
   // put your setup code here, to run once:
   //Define pin functionality on the Arduino
-  Serial.begin(9600);
+  
   pinMode(Btn, INPUT);
   pinMode(Lft, INPUT);
   pinMode(Rht, INPUT);

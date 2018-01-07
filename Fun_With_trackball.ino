@@ -16,7 +16,7 @@ unsigned long mouse_Rht;
 unsigned long mouse_Up;
 unsigned long mouse_Dwn;
 
-//define LED colour variables .I will use at dim off leds
+//define LED colour variables .I will use at dim off leds is void loop 
 int W = 0;
 int G = 0;
 int R = 0;

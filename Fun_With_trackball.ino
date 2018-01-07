@@ -242,7 +242,7 @@ void loop() {
         delay(2);
       }
     }
-    Serial.print("Clear all LEDS");
+
     for (int m = 0; m <= 255; m++) {
       analogWrite(WHT_LED, m);
       delay(2);

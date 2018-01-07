@@ -1,3 +1,4 @@
+//by TinLetHax (TiNredmc or TiN_redmc)
 //Define Trackballer Breakout pin connections to Arduino
 #define Btn 2//button
 #define Lft 3//left
